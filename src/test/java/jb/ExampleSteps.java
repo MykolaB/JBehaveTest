@@ -1,6 +1,9 @@
 package jb; /**
  * Created by NBiletskiy on 10/8/2015.
  */
+
+import static org.junit.Assert.assertEquals;
+
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -21,7 +24,6 @@ public class ExampleSteps {
 
     @Then("x should equal $value")
     public void thenXshouldBe(@Named("value") int value) {
-        if (value != x)
-            throw new RuntimeException("x is " + x + ", but should be " + value);
+        assertEquals(value, x);
     }
 }
