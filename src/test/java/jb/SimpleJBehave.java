@@ -1,19 +1,41 @@
-package jb; /**
+package jb;
+
+/**
  * Created by NBiletskiy on 10/8/2015.
  */
 import java.util.Arrays;
 import java.util.List;
 
-import org.jbehave.core.embedder.Embedder;
+import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
+import org.jbehave.core.configuration.Configuration;
+import org.jbehave.core.junit.JUnitStories;
+import org.jbehave.core.steps.InjectableStepsFactory;
+import org.jbehave.core.steps.InstanceStepsFactory;
+import org.junit.runner.RunWith;
 
-public class SimpleJBehave {
+@RunWith(JUnitReportingRunner.class)
+public class SimpleJBehave extends JUnitStories {
 
-    private static Embedder embedder = new Embedder();
-    private static List<String> storyPaths = Arrays
-            .asList("Math.story");
+    private Configuration configuration;
 
-    public static void main(String[] args) {
-        embedder.candidateSteps().add(new ExampleSteps());
-        embedder.runStoriesAsPaths(storyPaths);
+    public SimpleJBehave() {
+        super();
+        configuration = new Configuration() {
+        };
+    }
+
+    @Override
+    public Configuration configuration() {
+        return configuration;
+    }
+
+    @Override
+    public InjectableStepsFactory stepsFactory() {
+        return new InstanceStepsFactory(configuration(), new ExampleSteps());
+    }
+
+    @Override
+    protected List<String> storyPaths() {
+        return Arrays.asList("Math.story");
     }
 }

@@ -5,9 +5,8 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import org.jbehave.core.steps.Steps;
 
-public class ExampleSteps extends Steps {
+public class ExampleSteps {
     int x;
 
     @Given("a variable x with value $value")
